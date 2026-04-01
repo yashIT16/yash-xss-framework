@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Tool Binaries (Windows)
+*.exe
+
+# Output Directory
+output/
+
+# Large binaries/files
+*.pptx
+*.pdf
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
