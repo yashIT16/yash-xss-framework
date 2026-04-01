@@ -49,3 +49,9 @@ python core/yash_xss.py -d target.com
 - ✅ **Dynamic Payload Injecting**: Tests inputs, query parameters, and fragmented URIs against a curated payload library.
 - ✅ **Multi-Threading**: Rapidly probes massive domain lists concurrently.
 - ✅ **Fallback Engine**: Pure-python mode triggers when external dependencies aren't found.
+
+---
+
+## ⚠️ Legal Disclaimer
+**This tool is strictly developed for educational purposes and authorized penetration testing only.** 
+The author, Yash Thakor, and any contributors are **NOT responsible** for any misuse, damage, or illegal acts caused by this program. Do not use this framework against servers, networks, or applications that you do not own or have explicit, written permission to test. Unauthorized hacking is a crime and may result in severe legal consequences.
