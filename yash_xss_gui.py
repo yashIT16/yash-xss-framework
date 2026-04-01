@@ -832,6 +832,13 @@ class YASHXssGUI(ctk.CTk):
             command=self.open_report, state="disabled")
         self.report_btn.pack(fill="x", padx=16, pady=(0, 4))
 
+        self.update_btn = ctk.CTkButton(
+            self.sidebar, text="🔄  Check Updates",
+            font=ctk.CTkFont("Consolas", 12),
+            fg_color="#0a0a12", hover_color="#222233", text_color="#00d9ff",
+            border_width=1, border_color="#333355", command=self.check_updates)
+        self.update_btn.pack(fill="x", padx=16, pady=(0, 4))
+
         self.clear_btn = ctk.CTkButton(
             self.sidebar, text="🗑  Clear Log",
             font=ctk.CTkFont("Consolas", 12),
@@ -1084,6 +1091,24 @@ class YASHXssGUI(ctk.CTk):
     def clear_log(self):
         self.log_box.delete("1.0", "end")
         self._log_raw(self._banner_text())
+
+    def check_updates(self):
+        try:
+            self._log_raw("\n[*] Checking GitHub for framework updates...\n")
+            cflags = getattr(subprocess, 'CREATE_NO_WINDOW', 0x08000000)
+            result = subprocess.run(["git", "pull"], capture_output=True, text=True, creationflags=cflags)
+            if "Already up to date" in result.stdout:
+                messagebox.showinfo("Updater", "YASH XSS is already up to date!")
+                self._safe_log("[+] System is running the latest version.\n")
+            elif "fatal" in result.stderr.lower() or "error" in result.stderr.lower():
+                messagebox.showerror("Updater Error", f"Git Error:\n{result.stderr}")
+                self._safe_log("[-] Update failed. Make sure Git is installed.\n")
+            else:
+                messagebox.showinfo("Updater", "Update successfully downloaded! Please restart the tool to apply changes.")
+                self._safe_log("[+] Update applied! Restart the tool to take effect.\n")
+        except Exception as e:
+            messagebox.showerror("Updater Error", f"Failed to run auto-updater:\n{e}")
+            self._safe_log(f"[-] Auto-updater exception: {e}\n")
 
 
 # ═════════════════════════════════════════════════════════════════════════════
